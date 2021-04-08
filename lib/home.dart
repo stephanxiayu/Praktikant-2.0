@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:praktikant/add_screen.dart';
 import 'package:praktikant/database.dart';
+import 'package:praktikant/drawer.dart';
 import 'package:praktikant/task.dart';
 
 class Home extends StatefulWidget {
@@ -74,7 +75,12 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(appBar: AppBar(
+       
+      ),
+      drawer: Drawer(
+        child: MainDrawer(),
+      ),
    
      
     
