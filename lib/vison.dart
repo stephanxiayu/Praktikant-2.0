@@ -6,9 +6,9 @@ class VisionBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+   
       appBar: AppBar(
-        backgroundColor: Colors.white,
+       
         leading: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -24,11 +24,11 @@ class VisionBoard extends StatelessWidget {
         title: Padding(
           padding: EdgeInsets.all(10.0),
           child: Text(
-            "Vision Board",
+            "Big Five of LIFE",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Colors.lightGreen,
             ),
           ),
         ),
@@ -41,7 +41,7 @@ class VisionBoard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Colors.green,
                     ))),
             Container(
                 width: double.infinity,
@@ -53,11 +53,11 @@ class VisionBoard extends StatelessWidget {
                   ),
                 )),
             SizedBox(
-                child: Text("Wohnung",
+                child: Text("Eigentums Dachgeschosswohnung",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Colors.lightGreen,
                     ))),
             Container(
                 width: double.infinity,
@@ -109,7 +109,7 @@ class VisionBoard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Colors.lightGreen,
                     ))),
             Container(
                 width: double.infinity,
@@ -121,11 +121,11 @@ class VisionBoard extends StatelessWidget {
                   ),
                 )),
             SizedBox(
-                child: Text("Passives Einkommen",
+                child: Text("IN Japan Leben",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Colors.lightGreen,
                     ))),
             Container(
                 width: double.infinity,
@@ -146,7 +146,7 @@ class VisionBoard extends StatelessWidget {
                   ),
                 )),
             SizedBox(
-                child: Text("10.000 EUR im Monat",
+                child: Text("Eigenes Unternehmen - SprachApp",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -162,7 +162,7 @@ class VisionBoard extends StatelessWidget {
                   ),
                 )),
             SizedBox(
-                child: Text("China HSK-5 erreichen",
+                child: Text("China HSK-3 erreichen",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,

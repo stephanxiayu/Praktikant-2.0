@@ -188,7 +188,7 @@ class _AddWunscheState extends State<AddWunsche> {
                         decoration: BoxDecoration(
                             color: Colors.black,
                             borderRadius: BorderRadius.circular(30.0)),
-                        child: FlatButton(
+                        child: TextButton(
                           onPressed: _submit,
                           child: Text(
                             widget.task == null ? "Hinzufügen" : "Verändern",
@@ -204,7 +204,7 @@ class _AddWunscheState extends State<AddWunsche> {
                             decoration: BoxDecoration(
                                 color: Colors.black,
                                 borderRadius: BorderRadius.circular(30.0)),
-                            child: FlatButton(
+                            child: TextButton(
                               child: Text(
                                 "Löschen",
                                 style: TextStyle(
