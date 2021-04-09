@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
+import 'package:praktikant/home.dart';
+import 'package:praktikant/task.dart';
 import 'package:praktikant/zieledata.dart';
-
-import 'home.dart';
-import 'task.dart';
-import 'zielescrren.dart';
+import 'package:praktikant/zielescrren.dart';
 
 
-
-class Ziele extends StatefulWidget {
-  Ziele({Key key, this.title}) : super(key: key);
+class Wunsche extends StatefulWidget {
+  Wunsche({Key key, this.title}) : super(key: key);
   final String title;
   @override
-  _ZieleState createState() => _ZieleState();
+  _WunscheState createState() => _WunscheState();
 }
 
-class _ZieleState extends State<Ziele> {
+class _WunscheState extends State<Wunsche> {
   Future<List<Task>> _taskList;
   final DateFormat _dateFormatter = DateFormat("dd. MMM yyyy");
   @override
@@ -27,7 +25,7 @@ class _ZieleState extends State<Ziele> {
 
   _updateTaskList() {
     setState(() {
-      _taskList = DatabaseZiele.instance.getTaskList();
+      _taskList = DaterBase.instance.getTaskList();
     });
   }
 
@@ -49,7 +47,6 @@ class _ZieleState extends State<Ziele> {
             "${_dateFormatter.format(task.date)}   ${task.priority}",
             style: TextStyle(
                 fontSize: 15.0,
-                color: Colors.red,
                 fontWeight: FontWeight.bold,
                 decoration: task.status == 0
                     ? TextDecoration.none
@@ -58,16 +55,16 @@ class _ZieleState extends State<Ziele> {
           trailing: Checkbox(
             onChanged: (value) {
               task.status = value ? 1 : 0;
-              DatabaseZiele.instance.updateTask(task);
+              DaterBase.instance.updateTask(task);
               _updateTaskList();
             },
-            activeColor: Colors.red,
+            activeColor: Colors.green,
             value: task.status == 1 ? true : false,
           ),
           onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => AddZiele(
+                  builder: (_) => AddWunsche(
                         updateTaskList: _updateTaskList,
                         task: task,
                       ))),
@@ -80,9 +77,9 @@ class _ZieleState extends State<Ziele> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+  
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        
         leading: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -96,13 +93,13 @@ class _ZieleState extends State<Ziele> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.green,
         child: Icon(Icons.add),
         onPressed: () => {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => AddZiele(
+                  builder: (_) => AddWunsche(
                         updateTaskList: _updateTaskList,
                       )))
         },

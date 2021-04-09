@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:praktikant/task.dart';
 import 'package:praktikant/zieledata.dart';
 
-import 'task.dart';
 
-
-class AddZiele extends StatefulWidget {
+class AddWunsche extends StatefulWidget {
   final Function updateTaskList;
   final Task task;
 
-  AddZiele({this.updateTaskList, this.task});
+  AddWunsche({this.updateTaskList, this.task});
   @override
-  _AddZieleState createState() => _AddZieleState();
+  _AddWunscheState createState() => _AddWunscheState();
 }
 
-class _AddZieleState extends State<AddZiele> {
+class _AddWunscheState extends State<AddWunsche> {
   final _formKey = GlobalKey<FormState>();
   String _title = " ";
   String _priority;
@@ -59,7 +57,7 @@ class _AddZieleState extends State<AddZiele> {
   }
 
   _delete() {
-    DatabaseZiele.instance.deleteTask(widget.task.id);
+    DaterBase.instance.deleteTask(widget.task.id);
     widget.updateTaskList();
     Navigator.pop(context);
   }
@@ -71,11 +69,11 @@ class _AddZieleState extends State<AddZiele> {
       Task task = Task(title: _title, date: _date, priority: _priority);
       if (widget.task == null) {
         task.status = 0;
-        DatabaseZiele.instance.insertTask(task);
+        DaterBase.instance.insertTask(task);
       } else {
         task.id = widget.task.id;
         task.status = widget.task.status;
-        DatabaseZiele.instance.updateTask(task);
+        DaterBase.instance.updateTask(task);
       }
       widget.updateTaskList();
       Navigator.pop(context);
@@ -105,7 +103,9 @@ class _AddZieleState extends State<AddZiele> {
                   height: 20.0,
                 ),
                 Text(
-                  widget.task == null ? "Ziel hinzufügen" : "Ziele verändern",
+                  widget.task == null
+                      ? "Ziele hinzufügen"
+                      : "Ziele verändern",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 40.0,

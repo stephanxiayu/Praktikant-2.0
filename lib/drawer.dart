@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:praktikant/vison.dart';
+import 'package:praktikant/ziele.dart';
 import 'package:praktikant/zielescrren.dart';
 
 
@@ -65,7 +66,7 @@ class _MainDrawerState extends State<MainDrawer> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddZiele()),
+            MaterialPageRoute(builder: (context) => Wunsche()),
           );
         },
         leading: Icon(
