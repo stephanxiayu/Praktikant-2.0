@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-import 'package:praktikant/home.dart';
-import 'package:praktikant/task.dart';
 import 'package:praktikant/zieledata.dart';
-import 'package:praktikant/zielescrren.dart';
+
+import 'home.dart';
+import 'task.dart';
+import 'zielescrren.dart';
 
 
 
