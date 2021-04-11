@@ -48,7 +48,7 @@ class VisionBoard extends StatelessWidget {
                 height: 300.00,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: ExactAssetImage('lib/assets/1.png'),
+                    image: ExactAssetImage('lib/assets/d5.png'),
                     fit: BoxFit.cover,
                   ),
                 )),
@@ -64,7 +64,7 @@ class VisionBoard extends StatelessWidget {
                 height: 300.00,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: ExactAssetImage('lib/assets/2.png'),
+                    image: ExactAssetImage('lib/assets/d1.png'),
                     fit: BoxFit.cover,
                   ),
                 )),
@@ -73,7 +73,7 @@ class VisionBoard extends StatelessWidget {
                 height: 300.00,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: ExactAssetImage('lib/assets/3.png'),
+                    image: ExactAssetImage('lib/assets/d2.png'),
                     fit: BoxFit.cover,
                   ),
                 )),
@@ -82,7 +82,7 @@ class VisionBoard extends StatelessWidget {
                 height: 300.00,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: ExactAssetImage('lib/assets/4.png'),
+                    image: ExactAssetImage('lib/assets/d3.png'),
                     fit: BoxFit.cover,
                   ),
                 )),
@@ -91,7 +91,7 @@ class VisionBoard extends StatelessWidget {
                 height: 200.00,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: ExactAssetImage('lib/assets/hsk5.png'),
+                    image: ExactAssetImage('lib/assets/d6.png'),
                     fit: BoxFit.cover,
                   ),
                 )),
@@ -100,7 +100,7 @@ class VisionBoard extends StatelessWidget {
                 height: 300.00,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: ExactAssetImage('lib/assets/5.png'),
+                    image: ExactAssetImage('lib/assets/d7.png'),
                     fit: BoxFit.cover,
                   ),
                 )),
@@ -116,7 +116,7 @@ class VisionBoard extends StatelessWidget {
                 height: 150.00,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: ExactAssetImage('lib/assets/6.png'),
+                    image: ExactAssetImage('lib/assets/7.jpg'),
                     fit: BoxFit.cover,
                   ),
                 )),

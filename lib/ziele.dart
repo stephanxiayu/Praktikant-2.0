@@ -132,7 +132,7 @@ class _WunscheState extends State<Wunsche> {
                         Text(
                           "Ziele",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontSize: 25,
                               fontWeight: FontWeight.bold),
                         ),
@@ -141,7 +141,7 @@ class _WunscheState extends State<Wunsche> {
                         ),
                         Text(
                           "$completedTaskCount of ${snapshot.data.length}",
-                          style: TextStyle(color: Colors.black, fontSize: 20),
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ],
                     ),
