@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:praktikant/home.dart';
+
+import 'package:praktikant/startseite.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
 
      
       ),
-      home: Home(title: 'Flutter Demo Home Page'),
+      home: VideoTest(),
     );
   }
 }
