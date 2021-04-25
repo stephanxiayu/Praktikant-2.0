@@ -26,6 +26,7 @@ class _HomeState extends State<Home> {
       _taskList = DatabaseHelper.instance.getTaskList();
     });
   }
+  
 
   Widget _buildTask(Task task) {
     return Padding(

@@ -17,7 +17,7 @@ class _VideoTestState extends State<VideoTest> {
   void initState() {
     super.initState();
   
-    _controller = VideoPlayerController.asset("lib/assets/aa.mp4")
+    _controller = VideoPlayerController.asset("lib/assets/cool.mp4")
       ..initialize().then((_) {
      
         _controller.play();
@@ -68,7 +68,7 @@ class _VideoTestState extends State<VideoTest> {
           fontSize: 17.0,
         ),
     ),
-    buttonColor: Colors.red,
+    buttonColor: Colors.lightBlueAccent,
     onclickButtonFunction: () => Navigator.push(
                           context,
                           MaterialPageRoute(
