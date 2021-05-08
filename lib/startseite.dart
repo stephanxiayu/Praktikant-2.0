@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:praktikant/home.dart';
 import 'package:video_player/video_player.dart';
@@ -12,14 +11,12 @@ class VideoTest extends StatefulWidget {
 class _VideoTestState extends State<VideoTest> {
   VideoPlayerController _controller;
 
-
   @override
   void initState() {
     super.initState();
-  
-    _controller = VideoPlayerController.asset("lib/assets/cool.mp4")
+
+    _controller = VideoPlayerController.asset("lib/assets/cool1.mp4")
       ..initialize().then((_) {
-     
         _controller.play();
         _controller.setLooping(true);
         // Ensure the first frame is shown after the video is initialized.
@@ -44,49 +41,45 @@ class _VideoTestState extends State<VideoTest> {
           ),
         ),
       ),
+
+      Positioned(
+          child: AppBar(
       
-      Positioned(child: AppBar(title: Center(child: Text("Entdecke dein TAG", style: TextStyle(fontSize: 35),)),
-      backgroundColor: Colors.transparent,
-      elevation: 8,
+        backgroundColor: Colors.transparent,
+        elevation: 8,
       )),
-      Align(alignment: Alignment.bottomCenter,
-  child:   Row(mainAxisAlignment: MainAxisAlignment.center,
-  
-  crossAxisAlignment: CrossAxisAlignment.center,
-  
-    children:[  Container(
-                  
-                       
-                            height: 100,
-    
-      child: TwinkleButton(
-  buttonTitle: Text(
-    'Starte JETZT',
-    style: TextStyle(
-      color: Colors.white,
-          fontWeight: FontWeight.w300,
-          fontSize: 17.0,
-        ),
-    ),
-    buttonColor: Colors.lightBlueAccent,
-    onclickButtonFunction: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ),
-                        ),
-      
-    
-)
-    ),]
-  
-  ),
-),
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                  height: 100,
+                  child: TextButton(
+                    child: Text(
+                      'Starte JETZT',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                   
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                      ),
+                    ),
+                  )),
+            ]),
+      ),
     ]));
-      @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
+    @override
+    void dispose() {
+      super.dispose();
+      _controller.dispose();
+    }
   }
 }

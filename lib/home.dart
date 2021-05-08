@@ -4,17 +4,22 @@ import 'package:praktikant/add_screen.dart';
 import 'package:praktikant/database.dart';
 import 'package:praktikant/drawer.dart';
 import 'package:praktikant/task.dart';
+import 'package:video_player/video_player.dart';
 
 class Home extends StatefulWidget {
+  
   Home({Key key, this.title}) : super(key: key);
   final String title;
+
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  
   Future<List<Task>> _taskList;
   final DateFormat _dateFormatter = DateFormat("dd. MMM yyyy");
+
   @override
   void initState() {
     super.initState();
@@ -26,7 +31,7 @@ class _HomeState extends State<Home> {
       _taskList = DatabaseHelper.instance.getTaskList();
     });
   }
-  
+
 
   Widget _buildTask(Task task) {
     return Padding(
@@ -76,17 +81,12 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
-       
-      ),
+    return Scaffold(
+      appBar: AppBar(),
       drawer: Drawer(
         child: MainDrawer(),
       ),
-   
-     
-    
       floatingActionButton: FloatingActionButton(
-    
         child: Icon(Icons.add),
         onPressed: () => {
           Navigator.push(
