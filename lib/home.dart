@@ -4,7 +4,8 @@ import 'package:praktikant/add_screen.dart';
 import 'package:praktikant/database.dart';
 import 'package:praktikant/drawer.dart';
 import 'package:praktikant/task.dart';
-import 'package:video_player/video_player.dart';
+
+
 
 class Home extends StatefulWidget {
   
@@ -16,7 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
+ 
   Future<List<Task>> _taskList;
   final DateFormat _dateFormatter = DateFormat("dd. MMM yyyy");
 
@@ -145,5 +146,6 @@ class _HomeState extends State<Home> {
             );
           }),
     );
+
   }
 }
