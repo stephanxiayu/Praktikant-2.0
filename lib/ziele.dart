@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 import 'package:praktikant/home.dart';
+import 'package:praktikant/main.dart';
 import 'package:praktikant/task.dart';
 import 'package:praktikant/zieledata.dart';
 import 'package:praktikant/zielescrren.dart';
@@ -84,7 +85,7 @@ class _WunscheState extends State<Wunsche> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Home()),
+              MaterialPageRoute(builder: (context) => Homepage()),
             );
           },
           child: Icon(

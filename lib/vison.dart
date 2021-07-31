@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:praktikant/home.dart';
+import 'package:praktikant/main.dart';
 
 
 class VisionBoard extends StatelessWidget {
@@ -13,7 +14,7 @@ class VisionBoard extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Home()),
+              MaterialPageRoute(builder: (context) => Homepage()),
             );
           },
           child: Icon(
