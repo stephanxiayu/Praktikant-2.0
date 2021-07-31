@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:praktikant/add_screen.dart';
-import 'package:praktikant/database.dart';
-import 'package:praktikant/task.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:praktikant/drawer.dart';
+import 'package:praktikant/edit/add_screen.dart';
+import 'package:praktikant/edit/database.dart';
+import 'package:praktikant/edit/task.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:praktikant/voice/list.dart';
+import 'package:praktikant/voice/view.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +21,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      
       theme: ThemeData.dark(),
       home: Homepage(),
     );
@@ -31,12 +36,18 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  Directory appDirectory;
+  Stream<FileSystemEntity> fileStream;
+  List<String> records;
   int _currentIndex = 0;
   PageController _pageController;
 
   @override
   void dispose() {
     _pageController.dispose();
+    fileStream = null;
+    appDirectory = null;
+    records = null;
     super.dispose();
   }
 
@@ -48,6 +59,16 @@ class _HomepageState extends State<Homepage> {
     super.initState();
     _updateTaskList();
     _pageController = PageController();
+    records = [];
+    getApplicationDocumentsDirectory().then((value) {
+      appDirectory = value;
+      appDirectory.list().listen((onData) {
+        records.add(onData.path);
+      }).onDone(() {
+        records = records.reversed.toList();
+        setState(() {});
+      });
+    });
   }
 
   _updateTaskList() {
@@ -106,6 +127,9 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Center(child: Text("Stephans Praktikant"))),
+        drawer: Drawer(
+          child: MainDrawer(),
+        ),
         body: SizedBox.expand(
           child: PageView(
             controller: _pageController,
@@ -136,7 +160,8 @@ class _HomepageState extends State<Homepage> {
                             return Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 40.0, vertical: 20.0),
-                              child: Align(alignment: Alignment.centerRight,
+                              child: Align(
+                                alignment: Alignment.centerRight,
                                 child: Text(
                                   "$completedTaskCount of ${snapshot.data.length}",
                                   style: TextStyle(
@@ -151,8 +176,24 @@ class _HomepageState extends State<Homepage> {
                       );
                     }),
               ),
-              Container(
-                color: Colors.teal,
+              Container(color: Colors.grey[900],
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: RecordListView(
+                        records: records,
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: RecorderView(
+                        onSaved: _onRecordComplete,
+                      ),
+                    ),
+                  ],
+                ),
+               
               ),
             ],
           ),
@@ -164,8 +205,18 @@ class _HomepageState extends State<Homepage> {
             _pageController.jumpToPage(index);
           },
           items: <BottomNavyBarItem>[
-            BottomNavyBarItem(title: Text('写',style: TextStyle(fontSize: 25),), icon: Icon(Icons.edit)),
-            BottomNavyBarItem(title: Text('说',style: TextStyle(fontSize: 25),), icon: Icon(Icons.voice_chat)),
+            BottomNavyBarItem(
+                title: Text(
+                  '写',
+                  style: TextStyle(fontSize: 25),
+                ),
+                icon: Icon(Icons.edit)),
+            BottomNavyBarItem(
+                title: Text(
+                  '说',
+                  style: TextStyle(fontSize: 25),
+                ),
+                icon: Icon(Icons.voice_chat)),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -178,5 +229,16 @@ class _HomepageState extends State<Homepage> {
                                 updateTaskList: _updateTaskList,
                               )))
                 }));
+  }
+
+  _onRecordComplete() {
+    records.clear();
+    appDirectory.list().listen((onData) {
+      records.add(onData.path);
+    }).onDone(() {
+      records.sort();
+      records = records.reversed.toList();
+      setState(() {});
+    });
   }
 }

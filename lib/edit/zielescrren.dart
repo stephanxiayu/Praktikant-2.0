@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:praktikant/database.dart';
-import 'package:praktikant/task.dart';
+import 'package:praktikant/edit/task.dart';
+import 'package:praktikant/edit/zieledata.dart';
 
 
-
-class AddTaskScreen extends StatefulWidget {
+class AddWunsche extends StatefulWidget {
   final Function updateTaskList;
   final Task task;
 
-  AddTaskScreen({this.updateTaskList, this.task});
+  AddWunsche({this.updateTaskList, this.task});
   @override
-  _AddTaskScreenState createState() => _AddTaskScreenState();
+  _AddWunscheState createState() => _AddWunscheState();
 }
 
-class _AddTaskScreenState extends State<AddTaskScreen> {
+class _AddWunscheState extends State<AddWunsche> {
   final _formKey = GlobalKey<FormState>();
   String _title = " ";
   String _priority;
@@ -58,7 +57,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   }
 
   _delete() {
-    DatabaseHelper.instance.deleteTask(widget.task.id);
+    DaterBase.instance.deleteTask(widget.task.id);
     widget.updateTaskList();
     Navigator.pop(context);
   }
@@ -70,11 +69,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       Task task = Task(title: _title, date: _date, priority: _priority);
       if (widget.task == null) {
         task.status = 0;
-        DatabaseHelper.instance.insertTask(task);
+        DaterBase.instance.insertTask(task);
       } else {
         task.id = widget.task.id;
         task.status = widget.task.status;
-        DatabaseHelper.instance.updateTask(task);
+        DaterBase.instance.updateTask(task);
       }
       widget.updateTaskList();
       Navigator.pop(context);
@@ -105,10 +104,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
                 Text(
                   widget.task == null
-                      ? "Aufgabe hinzufügen"
-                      : "Aufgabe verändern",
+                      ? "Ziele hinzufügen"
+                      : "Ziele verändern",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 40.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -142,7 +141,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         style: TextStyle(fontSize: 18.0),
                         onTap: _handleDatePicker,
                         decoration: InputDecoration(
-                            labelText: "Datum",
+                            labelText: "Date",
                             labelStyle: TextStyle(fontSize: 18.0),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0))),
@@ -161,13 +160,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                             child: Text(
                               priority,
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 18.0),
+                                  color: Colors.black, fontSize: 18.0),
                             ),
                           );
                         }).toList(),
                         style: TextStyle(fontSize: 18.0),
                         decoration: InputDecoration(
-                            labelText: "Priorität",
+                            labelText: "Priority",
                             labelStyle: TextStyle(fontSize: 18.0),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0))),

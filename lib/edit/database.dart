@@ -1,14 +1,15 @@
 import 'dart:io';
 
+
 import 'package:path_provider/path_provider.dart';
-import 'package:praktikant/task.dart';
+import 'package:praktikant/edit/task.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DaterBase {
-  static final DaterBase instance = DaterBase._instance();
+class DatabaseHelper {
+  static final DatabaseHelper instance = DatabaseHelper._instance();
   static Database _db;
 
-  DaterBase._instance();
+  DatabaseHelper._instance();
 
   String tasksTable = "task_table";
   String colId = "id";
@@ -26,7 +27,7 @@ class DaterBase {
 
   Future<Database> _initDb() async {
     Directory dir = await getApplicationDocumentsDirectory();
-    String path = dir.path + "WUNSCHE.db";
+    String path = dir.path + "Praktikant.db";
     final todoListDb =
         await openDatabase(path, version: 1, onCreate: _createDb);
     return todoListDb;

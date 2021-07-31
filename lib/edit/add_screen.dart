@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:praktikant/task.dart';
-import 'package:praktikant/zieledata.dart';
+import 'package:praktikant/edit/database.dart';
+import 'package:praktikant/edit/task.dart';
 
 
-class AddWunsche extends StatefulWidget {
+
+class AddTaskScreen extends StatefulWidget {
   final Function updateTaskList;
   final Task task;
 
-  AddWunsche({this.updateTaskList, this.task});
+  AddTaskScreen({this.updateTaskList, this.task});
   @override
-  _AddWunscheState createState() => _AddWunscheState();
+  _AddTaskScreenState createState() => _AddTaskScreenState();
 }
 
-class _AddWunscheState extends State<AddWunsche> {
+class _AddTaskScreenState extends State<AddTaskScreen> {
   final _formKey = GlobalKey<FormState>();
   String _title = " ";
   String _priority;
@@ -57,7 +58,7 @@ class _AddWunscheState extends State<AddWunsche> {
   }
 
   _delete() {
-    DaterBase.instance.deleteTask(widget.task.id);
+    DatabaseHelper.instance.deleteTask(widget.task.id);
     widget.updateTaskList();
     Navigator.pop(context);
   }
@@ -69,11 +70,11 @@ class _AddWunscheState extends State<AddWunsche> {
       Task task = Task(title: _title, date: _date, priority: _priority);
       if (widget.task == null) {
         task.status = 0;
-        DaterBase.instance.insertTask(task);
+        DatabaseHelper.instance.insertTask(task);
       } else {
         task.id = widget.task.id;
         task.status = widget.task.status;
-        DaterBase.instance.updateTask(task);
+        DatabaseHelper.instance.updateTask(task);
       }
       widget.updateTaskList();
       Navigator.pop(context);
@@ -104,10 +105,10 @@ class _AddWunscheState extends State<AddWunsche> {
                 ),
                 Text(
                   widget.task == null
-                      ? "Ziele hinzufügen"
-                      : "Ziele verändern",
+                      ? "Aufgabe hinzufügen"
+                      : "Aufgabe verändern",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 40.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -141,7 +142,7 @@ class _AddWunscheState extends State<AddWunsche> {
                         style: TextStyle(fontSize: 18.0),
                         onTap: _handleDatePicker,
                         decoration: InputDecoration(
-                            labelText: "Date",
+                            labelText: "Datum",
                             labelStyle: TextStyle(fontSize: 18.0),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0))),
@@ -160,13 +161,13 @@ class _AddWunscheState extends State<AddWunsche> {
                             child: Text(
                               priority,
                               style: TextStyle(
-                                  color: Colors.black, fontSize: 18.0),
+                                  color: Colors.white, fontSize: 18.0),
                             ),
                           );
                         }).toList(),
                         style: TextStyle(fontSize: 18.0),
                         decoration: InputDecoration(
-                            labelText: "Priority",
+                            labelText: "Priorität",
                             labelStyle: TextStyle(fontSize: 18.0),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0))),

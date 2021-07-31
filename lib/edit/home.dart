@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-
 import 'package:intl/intl.dart';
-import 'package:praktikant/home.dart';
-import 'package:praktikant/main.dart';
-import 'package:praktikant/task.dart';
-import 'package:praktikant/zieledata.dart';
-import 'package:praktikant/zielescrren.dart';
+import 'package:praktikant/edit/add_screen.dart';
+import 'package:praktikant/edit/database.dart';
+import 'package:praktikant/drawer.dart';
+import 'package:praktikant/edit/task.dart';
 
 
-class Wunsche extends StatefulWidget {
-  Wunsche({Key key, this.title}) : super(key: key);
+
+class Home extends StatefulWidget {
+  
+  Home({Key key, this.title}) : super(key: key);
   final String title;
+
   @override
-  _WunscheState createState() => _WunscheState();
+  _HomeState createState() => _HomeState();
 }
 
-class _WunscheState extends State<Wunsche> {
+class _HomeState extends State<Home> {
+ 
   Future<List<Task>> _taskList;
   final DateFormat _dateFormatter = DateFormat("dd. MMM yyyy");
+
   @override
   void initState() {
     super.initState();
@@ -26,9 +29,10 @@ class _WunscheState extends State<Wunsche> {
 
   _updateTaskList() {
     setState(() {
-      _taskList = DaterBase.instance.getTaskList();
+      _taskList = DatabaseHelper.instance.getTaskList();
     });
   }
+
 
   Widget _buildTask(Task task) {
     return Padding(
@@ -48,6 +52,7 @@ class _WunscheState extends State<Wunsche> {
             "${_dateFormatter.format(task.date)}   ${task.priority}",
             style: TextStyle(
                 fontSize: 15.0,
+                color: Colors.green,
                 fontWeight: FontWeight.bold,
                 decoration: task.status == 0
                     ? TextDecoration.none
@@ -56,7 +61,7 @@ class _WunscheState extends State<Wunsche> {
           trailing: Checkbox(
             onChanged: (value) {
               task.status = value ? 1 : 0;
-              DaterBase.instance.updateTask(task);
+              DatabaseHelper.instance.updateTask(task);
               _updateTaskList();
             },
             activeColor: Colors.green,
@@ -65,7 +70,7 @@ class _WunscheState extends State<Wunsche> {
           onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => AddWunsche(
+                  builder: (_) => AddTaskScreen(
                         updateTaskList: _updateTaskList,
                         task: task,
                       ))),
@@ -78,29 +83,17 @@ class _WunscheState extends State<Wunsche> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  
-      appBar: AppBar(
-        
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Homepage()),
-            );
-          },
-          child: Icon(
-            Icons.arrow_back_ios, color: Colors.black, // add custom icons also
-          ),
-        ),
+      appBar: AppBar(),
+      drawer: Drawer(
+        child: MainDrawer(),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green,
         child: Icon(Icons.add),
         onPressed: () => {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => AddWunsche(
+                  builder: (_) => AddTaskScreen(
                         updateTaskList: _updateTaskList,
                       )))
         },
@@ -131,10 +124,10 @@ class _WunscheState extends State<Wunsche> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Ziele",
+                          "Aufgabe des Praktikanten",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 25,
+                              fontSize: 30,
                               fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
@@ -153,5 +146,6 @@ class _WunscheState extends State<Wunsche> {
             );
           }),
     );
+
   }
 }
